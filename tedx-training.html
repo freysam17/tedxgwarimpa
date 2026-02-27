@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Strategy & Social Media Management | TEDx Gwarimpa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --light-gray: #F7F7F7;
+            --medium-gray: #E5E5E5;
+            --dark-gray: #666666;
+            --text-dark: #1A1A1A;
+            --oxblood: #722F37;
+            --oxblood-light: #8B3D46;
+            --oxblood-dark: #5C262D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--medium-gray);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--oxblood);
+        }
+
+        .nav-logo span {
+            color: var(--text-dark);
+            font-weight: 400;
+        }
+
+        .nav-progress {
+            height: 3px;
+            background: var(--oxblood);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--oxblood);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-dark);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--light-gray);
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--oxblood);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .hero .meta {
+            font-size: 0.875rem;
+            color: var(--dark-gray);
+            border-top: 1px solid var(--medium-gray);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--oxblood);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Section Titles */
+        .section-header {
+            background: var(--oxblood);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .section-header .section-number {
+            font-size: 0.875rem;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--white);
+        }
+
+        .content-section.alt {
+            background: var(--light-gray);
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--oxblood);
+        }
+
+        h3.center {
+            text-align: center;
+        }
+
+        h3.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--oxblood);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: var(--dark-gray);
+            font-weight: 300;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        li strong {
+            color: var(--oxblood);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--light-gray);
+            border-left: 4px solid var(--oxblood);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box.dark {
+            background: var(--oxblood);
+            color: var(--white);
+            border-left: none;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Quote */
+        blockquote {
+            border-left: 4px solid var(--oxblood);
+            padding-left: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--dark-gray);
+            font-size: 1.125rem;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9375rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--oxblood);
+        }
+
+        tr:hover {
+            background: var(--light-gray);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--medium-gray);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .alt .card {
+            background: var(--white);
+        }
+
+        .card:hover {
+            border-color: var(--oxblood);
+            box-shadow: 0 10px 30px rgba(114, 47, 55, 0.1);
+        }
+
+        .card h4 {
+            margin-top: 0;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Pillar Cards */
+        .pillar-card {
+            background: var(--white);
+            border: 1px solid var(--medium-gray);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--oxblood);
+        }
+
+        .pillar-number {
+            display: inline-block;
+            background: var(--oxblood);
+            color: var(--white);
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-card h4 {
+            margin-top: 0;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            padding: 2rem;
+        }
+
+        .comparison-item.wrong {
+            background: #FEF2F2;
+            border-left: 4px solid #DC2626;
+        }
+
+        .comparison-item.right {
+            background: #F0FDF4;
+            border-left: 4px solid #16A34A;
+        }
+
+        .comparison-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .comparison-item.wrong .comparison-label {
+            color: #DC2626;
+        }
+
+        .comparison-item.right .comparison-label {
+            color: #16A34A;
+        }
+
+        /* Rules List */
+        .rules-list {
+            counter-reset: rule-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rules-list li {
+            counter-increment: rule-counter;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .rules-list li::before {
+            content: counter(rule-counter);
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--oxblood);
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Action Items */
+        .action-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--white);
+            border: 1px solid var(--medium-gray);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            border-color: var(--oxblood);
+        }
+
+        .action-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: var(--oxblood);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .action-content h4 {
+            margin-top: 0;
+        }
+
+        .action-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-item {
+            padding: 1.5rem;
+            background: var(--light-gray);
+        }
+
+        .metric-item.good {
+            border-left: 4px solid #16A34A;
+        }
+
+        .metric-item.bad {
+            border-left: 4px solid #DC2626;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .metric-item.good .metric-label {
+            color: #16A34A;
+        }
+
+        .metric-item.bad .metric-label {
+            color: #DC2626;
+        }
+
+        .metric-item h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-item p {
+            font-size: 0.875rem;
+            color: var(--dark-gray);
+            margin-bottom: 0;
+        }
+
+        /* Workflow */
+        .workflow {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .workflow::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--medium-gray);
+        }
+
+        .workflow-item {
+            position: relative;
+            padding: 1.5rem;
+            padding-left: 2rem;
+            background: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        .workflow-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 1.75rem;
+            width: 16px;
+            height: 16px;
+            background: var(--oxblood);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+        }
+
+        .workflow-time {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--oxblood);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .workflow-item h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .workflow-item p {
+            font-size: 0.9375rem;
+            margin-bottom: 0;
+            color: var(--dark-gray);
+        }
+
+        /* Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .resource-item {
+            padding: 1.5rem;
+            background: var(--light-gray);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            background: var(--medium-gray);
+        }
+
+        .resource-item h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--oxblood);
+        }
+
+        .resource-item p {
+            font-size: 0.8125rem;
+            color: var(--dark-gray);
+            margin-bottom: 0;
+        }
+
+        /* Final Section */
+        .final-section {
+            background: var(--oxblood);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .final-section h3 {
+            color: var(--white);
+        }
+
+        .final-section h3::after {
+            background: var(--white);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .final-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.125rem;
+        }
+
+        .final-section .cta {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer .logo {
+            font-weight: 600;
+            color: var(--white);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .logo span {
+            color: var(--oxblood-light);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--oxblood);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--oxblood-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--medium-gray);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            section {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.125rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.8125rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .action-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .action-number {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-logo">TEDx<span>Gwarimpa</span></div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#foundations">Foundations</a></li>
+            <li><a href="#strategy">Strategy</a></li>
+            <li><a href="#management">Management</a></li>
+            <li><a href="#problems">Problems</a></li>
+            <li><a href="#action">Action Plan</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-progress" id="navProgress"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>Content Strategy &<br><span>Social Media Management</span></h1>
+            <p class="subtitle">Training Session for TEDx Gwarimpa Social Media Team</p>
+            <div class="meta">
+                <p><strong>Duration:</strong> 60 Minutes &nbsp;|&nbsp; <strong>Format:</strong> Online Training</p>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Agenda -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3 class="center">Today's Agenda</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>1. Foundations</h4>
+                    <p>Understanding content strategy and why it matters for TEDx Gwarimpa.</p>
+                    <p><strong>10 minutes</strong></p>
+                </div>
+                <div class="card">
+                    <h4>2. Content Strategy</h4>
+                    <p>Building your content pillars, calendar, and production workflow.</p>
+                    <p><strong>20 minutes</strong></p>
+                </div>
+                <div class="card">
+                    <h4>3. Social Media Management</h4>
+                    <p>Platform strategy, brand voice, engagement, and metrics.</p>
+                    <p><strong>20 minutes</strong></p>
+                </div>
+                <div class="card">
+                    <h4>4. Fixing Problems</h4>
+                    <p>Common issues and practical solutions.</p>
+                    <p><strong>10 minutes</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1 Header -->
+    <section class="section-header" id="foundations">
+        <div class="container">
+            <p class="section-number">SECTION 1</p>
+            <h2>FOUNDATIONS</h2>
+        </div>
+    </section>
+
+    <!-- What Is Content Strategy -->
+    <section class="content-section">
+        <div class="container">
+            <h3>What Is Content Strategy?</h3>
+            <p class="lead">The planning, creation, delivery, and management of content that serves a defined purpose for a defined audience.</p>
+            
+            <div class="highlight-box">
+                <p><strong>It is NOT:</strong></p>
+                <ul>
+                    <li>Randomly posting quotes, flyers, or speaker photos</li>
+                    <li>Just creating pretty graphics</li>
+                    <li>Posting when you feel like it</li>
+                </ul>
+            </div>
+
+            <blockquote>
+                If your content has no strategy, your social media is just noise. Beautiful noise, but noise.
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Your Content Must Do 3 Things -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>Your Content Must Do 3 Things</h3>
+            <p>For TEDx Gwarimpa specifically, every piece of content should serve one of these three goals:</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>1. Build Anticipation</h4>
+                    <p>Before events — generate excitement, awareness, and registrations.</p>
+                </div>
+                <div class="card">
+                    <h4>2. Amplify Impact</h4>
+                    <p>During events — extend reach, capture moments, engage attendees.</p>
+                </div>
+                <div class="card">
+                    <h4>3. Extend Ideas</h4>
+                    <p>After events — keep ideas alive, grow community, repurpose content.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box dark">
+                <p><strong>The Rule:</strong> If a post doesn't serve one of these three goals, don't post it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy vs Management -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Content Strategy vs Social Media Management</h3>
+            <p>Many teams confuse these two. Let's separate them clearly:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Content Strategy</th>
+                            <th>Social Media Management</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Decides <strong>what</strong> to say and <strong>why</strong></td>
+                            <td>Decides <strong>where</strong> to say it and <strong>how</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Focuses on message and meaning</td>
+                            <td>Focuses on platform, timing, and engagement</td>
+                        </tr>
+                        <tr>
+                            <td>Long-term thinking</td>
+                            <td>Day-to-day execution</td>
+                        </tr>
+                        <tr>
+                            <td>The <strong>BRAIN</strong></td>
+                            <td>The <strong>HANDS</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>You need both.</strong> Strategy without management is a plan that never happens. Management without strategy is activity without results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2 Header -->
+    <section class="section-header" id="strategy">
+        <div class="container">
+            <p class="section-number">SECTION 2</p>
+            <h2>CONTENT STRATEGY FOR TEDx GWARIMPA</h2>
+        </div>
+    </section>
+
+    <!-- Know Your Audience -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Step 1: Know Your Audience</h3>
+            <p class="lead">Before you create a single post, answer this question: Who is the TEDx Gwarimpa audience on social media?</p>
+            
+            <p>You are NOT talking to everyone. You ARE talking to:</p>
+            <ul>
+                <li><strong>Young professionals in Abuja</strong> — curious, ambitious, interested in ideas</li>
+                <li><strong>Students and creatives</strong> — looking for inspiration and community</li>
+                <li><strong>Potential speakers and partners</strong> — evaluating your credibility</li>
+                <li><strong>The global TEDx community</strong> — discovering local events through content</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Audience Persona -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>Audience Persona Example</h3>
+            
+            <div class="highlight-box">
+                <p><strong>Name:</strong> Amina, 26</p>
+                <p><strong>Location:</strong> Abuja</p>
+                <p><strong>Occupation:</strong> Young professional, works in tech</p>
+                <p><strong>What she wants:</strong> Inspiration, networking, exposure to new ideas</p>
+                <p><strong>Where she spends time:</strong> Instagram, Twitter/X, LinkedIn, YouTube</p>
+                <p><strong>What makes her follow:</strong> Consistent, intelligent, visually clean content</p>
+                <p><strong>What makes her unfollow:</strong> Irregular posting, low-quality graphics, generic content</p>
+            </div>
+
+            <p>When you create content, you are talking to <strong>Amina</strong>. Not to a faceless crowd.</p>
+        </div>
+    </section>
+
+    <!-- Content Pillars -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Step 2: Define Your Content Pillars</h3>
+            <p class="lead">Content pillars are the 3-5 core themes that every piece of your content should fall under. They keep you focused and prevent random posting.</p>
+
+            <div class="pillar-card">
+                <span class="pillar-number">1</span>
+                <h4>Ideas Worth Spreading</h4>
+                <p>This is your core. Share powerful ideas from past TEDx talks, global TED content, or original thought-leadership posts. This pillar positions TEDx Gwarimpa as a hub for meaningful thinking.</p>
+                <p><em>Examples: Quote cards from speakers, short video clips, "Did You Know" posts</em></p>
+            </div>
+
+            <div class="pillar-card">
+                <span class="pillar-number">2</span>
+                <h4>People and Stories</h4>
+                <p>TEDx is about human beings with something to say. Spotlight your speakers, organizers, volunteers, and attendees. Make your community visible.</p>
+                <p><em>Examples: Speaker introductions, behind-the-scenes, volunteer appreciation, testimonials</em></p>
+            </div>
+
+            <div class="pillar-card">
+                <span class="pillar-number">3</span>
+                <h4>Event Promotion</h4>
+                <p>Direct promotion of upcoming events, ticket sales, registration links, and logistics. This pillar drives action.</p>
+                <p><em>Examples: Event announcements, countdown posts, registration reminders, venue reveals</em></p>
+            </div>
+
+            <div class="pillar-card">
+                <span class="pillar-number">4</span>
+                <h4>Community and Culture</h4>
+                <p>Content that connects TEDx Gwarimpa to Abuja, to Nigeria, to the broader culture. This makes you relatable and locally relevant.</p>
+                <p><em>Examples: Posts about Gwarimpa/Abuja, trending conversations, local collaborations</em></p>
+            </div>
+
+            <div class="pillar-card">
+                <span class="pillar-number">5</span>
+                <h4>Education and Value</h4>
+                <p>Teach your audience something. Give them a reason to follow you even when there is no event coming up. This keeps your page alive year-round.</p>
+                <p><em>Examples: Tips on public speaking, innovation, personal development</em></p>
+            </div>
+
+            <div class="highlight-box dark">
+                <p><strong>The Rule:</strong> Every single post you create must fit into one of these five pillars. If it doesn't fit, it doesn't get posted.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Calendar -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>Step 3: Build a Content Calendar</h3>
+            <p class="lead">A content calendar eliminates the biggest problem: <strong>inconsistency.</strong></p>
+            
+            <p>You go quiet for weeks, then suddenly flood your pages with event promotion. Your audience forgets you exist, then feels spammed.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Content Pillar</th>
+                            <th>Post Type</th>
+                            <th>Platform Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Monday</strong></td>
+                            <td>Ideas Worth Spreading</td>
+                            <td>Quote card or idea snippet</td>
+                            <td>Instagram, Twitter/X</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tuesday</strong></td>
+                            <td>People & Stories</td>
+                            <td>Speaker spotlight or team feature</td>
+                            <td>Instagram, LinkedIn</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wednesday</strong></td>
+                            <td>Education & Value</td>
+                            <td>Tip, lesson, or how-to</td>
+                            <td>Twitter/X, LinkedIn</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thursday</strong></td>
+                            <td>Community & Culture</td>
+                            <td>Local relevance or trending topic</td>
+                            <td>Twitter/X, Instagram</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Friday</strong></td>
+                            <td>Event Promotion</td>
+                            <td>Registration push or throwback</td>
+                            <td>All platforms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saturday</strong></td>
+                            <td>People & Stories</td>
+                            <td>Behind-the-scenes</td>
+                            <td>Instagram Stories, Twitter/X</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sunday</strong></td>
+                            <td>Ideas Worth Spreading</td>
+                            <td>Long-form or video clip</td>
+                            <td>YouTube, LinkedIn, Instagram</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>You should be posting a minimum of 5 times per week.</strong> Anything less and the algorithm buries you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Workflow -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Step 4: Content Production Workflow</h3>
+            <p class="lead">Ideas mean nothing if you cannot execute. Here's a simple workflow your team should follow every single week.</p>
+
+            <div class="workflow">
+                <div class="workflow-item">
+                    <p class="workflow-time">Sunday Evening / Monday Morning</p>
+                    <h5>Planning Session (30 minutes)</h5>
+                    <p>Review the week's content calendar. Assign who is creating what. Confirm all assets needed (photos, videos, graphics, captions).</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">Monday to Wednesday</p>
+                    <h5>Content Creation</h5>
+                    <p>Graphics are designed. Captions are written. Videos are edited. Everything is prepared in advance, not on the day of posting.</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">Wednesday</p>
+                    <h5>Review and Approval</h5>
+                    <p>Team lead or content manager reviews all content for the rest of the week. Checks for quality, accuracy, brand consistency, and typos.</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">Thursday to Sunday</p>
+                    <h5>Scheduled Posting & Engagement</h5>
+                    <p>Content goes live according to the calendar. Social media manager monitors comments, replies to messages, engages with followers, tracks performance.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box dark">
+                <p><strong>Key Rule:</strong> Never create content on the same day you are supposed to post it. That is how mistakes happen and quality drops.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3 Header -->
+    <section class="section-header" id="management">
+        <div class="container">
+            <p class="section-number">SECTION 3</p>
+            <h2>SOCIAL MEDIA MANAGEMENT</h2>
+        </div>
+    </section>
+
+    <!-- Platform Strategy -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Platform Strategy</h3>
+            <p class="lead">You don't need to be everywhere. You need to be <strong>excellent</strong> on the platforms that matter most.</p>
+        </div>
+    </section>
+
+    <!-- Instagram -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>Instagram — Your Primary Visual Platform</h3>
+            <p>This is likely where most of your audience lives. Use it for polished graphics, speaker photos, event recaps, reels, and stories.</p>
+
+            <div class="comparison">
+                <div class="comparison-item right">
+                    <p class="comparison-label">What Works</p>
+                    <ul>
+                        <li>Carousel posts breaking down ideas from talks</li>
+                        <li>Reels with short speaker clips (30-60 seconds)</li>
+                        <li>Stories for behind-the-scenes, polls, countdowns</li>
+                        <li>Clean, branded grid aesthetic</li>
+                    </ul>
+                </div>
+                <div class="comparison-item wrong">
+                    <p class="comparison-label">Stop Doing</p>
+                    <ul>
+                        <li>Posting blurry event photos</li>
+                        <li>Using inconsistent fonts and colors</li>
+                        <li>Going weeks without posting then dumping 10 posts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Twitter -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Twitter/X — Your Conversation Platform</h3>
+            <p>This is where you engage in real-time, share quick ideas, and participate in trending conversations.</p>
+
+            <div class="comparison">
+                <div class="comparison-item right">
+                    <p class="comparison-label">What Works</p>
+                    <ul>
+                        <li>Live-tweeting during events</li>
+                        <li>Sharing speaker quotes as text posts</li>
+                        <li>Engaging with other TEDx accounts and thought leaders</li>
+                        <li>Short threads breaking down key ideas</li>
+                    </ul>
+                </div>
+                <div class="comparison-item wrong">
+                    <p class="comparison-label">Stop Doing</p>
+                    <ul>
+                        <li>Only tweeting event links with no context</li>
+                        <li>Ignoring replies and mentions</li>
+                        <li>Being inactive for weeks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LinkedIn -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>LinkedIn — Your Credibility Platform</h3>
+            <p>This is where you attract speakers, partners, sponsors, and professional attendees.</p>
+
+            <div class="comparison">
+                <div class="comparison-item right">
+                    <p class="comparison-label">What Works</p>
+                    <ul>
+                        <li>Speaker announcement posts with professional bios</li>
+                        <li>Post-event recap articles</li>
+                        <li>Behind-the-scenes of what it takes to organize a TEDx event</li>
+                        <li>Tagging speakers, partners, and sponsors in posts</li>
+                    </ul>
+                </div>
+                <div class="comparison-item wrong">
+                    <p class="comparison-label">Stop Doing</p>
+                    <ul>
+                        <li>Copying exact content from Instagram without adapting</li>
+                        <li>Ignoring LinkedIn entirely</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube -->
+    <section class="content-section">
+        <div class="container">
+            <h3>YouTube — Your Archive & Discovery Platform</h3>
+            <p>Every TEDx talk should live on YouTube. This is how your ideas reach people beyond Abuja, beyond Nigeria, beyond the event date.</p>
+
+            <div class="comparison">
+                <div class="comparison-item right">
+                    <p class="comparison-label">What Works</p>
+                    <ul>
+                        <li>Full speaker talks uploaded with proper titles, descriptions, and tags</li>
+                        <li>Short clips (YouTube Shorts) highlighting the most powerful 60 seconds</li>
+                        <li>Event highlight reels</li>
+                    </ul>
+                </div>
+                <div class="comparison-item wrong">
+                    <p class="comparison-label">Stop Doing</p>
+                    <ul>
+                        <li>Recording talks but never uploading them</li>
+                        <li>Poor titles like "TEDx Gwarimpa Speaker 3" instead of "How Failure Made Me a Better Leader | Jane Doe | TEDx Gwarimpa"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Voice -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>TEDx Gwarimpa Brand Voice</h3>
+            <p class="lead">Every post should sound like it comes from the same source.</p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>Intelligent but Accessible</h4>
+                    <p>You're sharing big ideas, but you're not lecturing. Talk to your audience like a smart friend, not a professor.</p>
+                </div>
+                <div class="card">
+                    <h4>Warm and Inviting</h4>
+                    <p>TEDx is a community. Your tone should make people feel welcome.</p>
+                </div>
+                <div class="card">
+                    <h4>Confident but Not Arrogant</h4>
+                    <p>You know the value of what you offer. You don't need to beg people to attend or follow.</p>
+                </div>
+                <div class="card">
+                    <h4>Locally Rooted, Globally Minded</h4>
+                    <p>You're from Gwarimpa, from Abuja, from Nigeria. But your ideas are universal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Voice Example -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Brand Voice Example</h3>
+
+            <div class="comparison">
+                <div class="comparison-item wrong">
+                    <p class="comparison-label">Wrong Tone</p>
+                    <p>"We are pleased to cordially invite you to the prestigious TEDx Gwarimpa event. Kindly register at the link below."</p>
+                </div>
+                <div class="comparison-item right">
+                    <p class="comparison-label">Right Tone</p>
+                    <p>"The next TEDx Gwarimpa is coming. 6 speakers. 6 ideas that will challenge how you think. Abuja, are you ready? Grab your spot — link in bio."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engagement Rules -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>Engagement Rules</h3>
+            <p class="lead">Posting content is only 50% of social media management. The other 50% is <strong>engagement.</strong></p>
+
+            <ol>
+                <li><strong>Reply to every comment within 2 hours of posting.</strong> The first 2 hours are when the algorithm decides whether to push your content.</li>
+                <li><strong>Reply to every DM within 24 hours.</strong> If someone messages your page, they're interested. Don't lose them.</li>
+                <li><strong>Engage with other accounts proactively.</strong> Comment on posts by other TEDx events, speakers, Abuja-based creators.</li>
+                <li><strong>Ask questions in your captions.</strong> Don't just broadcast. Invite responses.</li>
+                <li><strong>Use Stories for interaction.</strong> Polls, question stickers, quizzes, countdowns drive engagement.</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Metrics -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Metrics: What to Track</h3>
+            <p class="lead">Not all numbers matter equally.</p>
+
+            <div class="metrics-grid">
+                <div class="metric-item good">
+                    <p class="metric-label">Track This</p>
+                    <h5>Engagement Rate</h5>
+                    <p>(likes + comments + shares + saves) ÷ followers × 100</p>
+                </div>
+                <div class="metric-item good">
+                    <p class="metric-label">Track This</p>
+                    <h5>Saves and Shares</h5>
+                    <p>Most valuable engagement signals</p>
+                </div>
+                <div class="metric-item good">
+                    <p class="metric-label">Track This</p>
+                    <h5>Website Clicks & Registrations</h5>
+                    <p>Your bottom line during event season</p>
+                </div>
+                <div class="metric-item good">
+                    <p class="metric-label">Track This</p>
+                    <h5>Follower Growth Rate</h5>
+                    <p>How fast are you growing? Track weekly.</p>
+                </div>
+                <div class="metric-item bad">
+                    <p class="metric-label">Stop Obsessing</p>
+                    <h5>Total Follower Count</h5>
+                    <p>2,000 engaged > 20,000 dead followers</p>
+                </div>
+                <div class="metric-item bad">
+                    <p class="metric-label">Stop Obsessing</p>
+                    <h5>Likes Alone</h5>
+                    <p>Weakest form of engagement. Focus on comments, saves, shares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4 Header -->
+    <section class="section-header" id="problems">
+        <div class="container">
+            <p class="section-number">SECTION 4</p>
+            <h2>FIXING COMMON PROBLEMS</h2>
+        </div>
+    </section>
+
+    <!-- Problems and Solutions -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Problem 1: Inconsistent Posting</h3>
+            <div class="highlight-box">
+                <p><strong>The Fix:</strong> Build the content calendar as described. Batch-create content weekly. Use scheduling tools like Buffer, Later, or Meta Business Suite. No excuses.</p>
+            </div>
+
+            <h3>Problem 2: Content Only During Event Season</h3>
+            <div class="highlight-box">
+                <p><strong>The Fix:</strong> Your content pillars solve this. Ideas Worth Spreading, People and Stories, and Education and Value give you things to post year-round. TEDx Gwarimpa should be active 52 weeks a year.</p>
+            </div>
+
+            <h3>Problem 3: Low-Quality Visuals</h3>
+            <div class="highlight-box">
+                <p><strong>The Fix:</strong> Establish a brand kit. Choose 2-3 fonts, a defined color palette (use TEDx red as anchor), and a consistent layout style. Use Canva with saved brand templates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Problems -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>Problem 4: No Clear Call to Action</h3>
+            <div class="highlight-box">
+                <p><strong>The Fix:</strong> Every post should tell the audience what to do next. Follow us. Register now. Share this. Tag a friend. Watch the full talk. Never post without purpose and a next step.</p>
+            </div>
+
+            <h3>Problem 5: Team Works in Silos</h3>
+            <div class="highlight-box">
+                <p><strong>The Fix:</strong> Use a shared workspace. Google Drive folder organized by month, Trello or Notion board for planning, WhatsApp or Slack for quick coordination. Everyone should know what's being posted, when, and by whom.</p>
+            </div>
+
+            <h3>Problem 6: No Post-Event Content Strategy</h3>
+            <div class="highlight-box">
+                <p><strong>The Fix:</strong> The event is not the end — it's the beginning of a content cycle. One event should generate at least 30-50 pieces of content. If you're only getting 5-10 posts, you're leaving massive value on the table.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post-Event Checklist -->
+    <section class="content-section">
+        <div class="container">
+            <h3>Post-Event Content Checklist</h3>
+
+            <div class="workflow">
+                <div class="workflow-item">
+                    <p class="workflow-time">Within 48 Hours</p>
+                    <h5>Highlight Reel</h5>
+                    <p>Quick, energetic video capturing the event's best moments.</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">Week 1</p>
+                    <h5>Attendee Testimonials & Photos</h5>
+                    <p>Share reactions, photos, and quotes from attendees.</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">Week 1</p>
+                    <h5>Recap Article</h5>
+                    <p>LinkedIn article or blog post summarizing key takeaways.</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">Weeks 2-4</p>
+                    <h5>Individual Speaker Clips</h5>
+                    <p>Short video clips highlighting each speaker's key moments.</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">Weeks 2-4</p>
+                    <h5>Full Talks on YouTube</h5>
+                    <p>Properly titled, tagged, and described for discovery.</p>
+                </div>
+                <div class="workflow-item">
+                    <p class="workflow-time">1 Year Later</p>
+                    <h5>Throwback Content</h5>
+                    <p>"One year ago" posts to resurface ideas and memories.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5 Header -->
+    <section class="section-header" id="action">
+        <div class="container">
+            <p class="section-number">SECTION 5</p>
+            <h2>ACTION PLAN</h2>
+        </div>
+    </section>
+
+    <!-- Action Items -->
+    <section class="content-section">
+        <div class="container">
+            <h3>What to Do This Week</h3>
+            <p class="lead">Five concrete actions to take immediately after this session:</p>
+
+            <div class="action-item">
+                <div class="action-number">1</div>
+                <div class="action-content">
+                    <h4>Finalize Your Content Pillars</h4>
+                    <p>Take the five pillars recommended, adapt them if needed, and get the whole team aligned. Print them. Pin them. Everyone should know them.</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-number">2</div>
+                <div class="action-content">
+                    <h4>Build Your First 2-Week Content Calendar</h4>
+                    <p>Using the template provided, plan your next 14 days of content. Assign responsibilities. Set deadlines for asset creation and review.</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-number">3</div>
+                <div class="action-content">
+                    <h4>Create Your Brand Kit in Canva</h4>
+                    <p>Set up a shared Canva workspace with your fonts, colors, and logo. Create 5-10 reusable templates for quote cards, speaker spotlights, event announcements.</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-number">4</div>
+                <div class="action-content">
+                    <h4>Audit Your Current Pages</h4>
+                    <p>Look at your last 20 posts across all platforms. Ask: Does this fit a pillar? Is quality consistent? Is there a CTA? Is the brand voice right?</p>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-number">5</div>
+                <div class="action-content">
+                    <h4>Set Up a Scheduling Tool</h4>
+                    <p>Choose one (Buffer, Later, or Meta Business Suite) and start scheduling your first week of content. Get ahead of the posting cycle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 Rules -->
+    <section class="content-section alt">
+        <div class="container">
+            <h3>The 10 Rules for TEDx Gwarimpa Social Media</h3>
+
+            <ul class="rules-list">
+                <li>Every post must serve one of your five content pillars.</li>
+                <li>Post a minimum of five times per week across your active platforms.</li>
+                <li>Never create content on the same day you post it.</li>
+                <li>Speak in a voice that is intelligent, warm, confident, and locally rooted.</li>
+                <li>Every post must include a clear call to action.</li>
+                <li>Engage with your audience. Reply to comments and messages. Be present.</li>
+                <li>One event should produce at least 30 pieces of content.</li>
+                <li>Track engagement rate, saves, shares, and conversions. Ignore vanity metrics.</li>
+                <li>Stay active year-round, not just during event season.</li>
+                <li>Your content doesn't just promote events. It spreads ideas. That is the mission.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="content-section">
+        <div class="container">
+            <h3 class="center">Additional Resources</h3>
+
+            <div class="resources-grid">
+                <div class="resource-item">
+                    <h5>Canva</h5>
+                    <p>Graphic design & brand kit management</p>
+                </div>
+                <div class="resource-item">
+                    <h5>Buffer</h5>
+                    <p>Social media scheduling</p>
+                </div>
+                <div class="resource-item">
+                    <h5>Later</h5>
+                    <p>Instagram-focused scheduling</p>
+                </div>
+                <div class="resource-item">
+                    <h5>Notion</h5>
+                    <p>Content calendar & team workspace</p>
+                </div>
+                <div class="resource-item">
+                    <h5>TED Media Guidelines</h5>
+                    <p>TEDx brand standards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="final-section">
+        <div class="container">
+            <h3 class="center">Final Note to the Team</h3>
+            <p>The difference between TEDx events that grow and those that stay small is almost never the quality of the speakers or ideas.</p>
+            <p>It is the quality and consistency of content <strong>between events.</strong></p>
+            <p>Your job is to build a community that is already engaged, excited, and sharing ideas long before the next event is announced.</p>
+            <p>That is what great content strategy does.</p>
+            <p class="cta">Now go execute.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="logo">TEDx<span>Gwarimpa</span></p>
+        <p>Content Strategy & Social Media Management Training</p>
+        <p>Let's spread ideas worth sharing.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // DOM Elements
+        const nav = document.getElementById('nav');
+        const navProgress = document.getElementById('navProgress');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const backToTop = document.getElementById('backToTop');
+        const sections = document.querySelectorAll('section');
+
+        // Mobile Menu Toggle
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll Progress & Navigation
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            // Update progress bar
+            navProgress.style.width = scrollPercent + '%';
+            
+            // Add shadow to nav on scroll
+            if (scrollTop > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            // Show/hide back to top button
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to Top
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Section visibility on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Make hero visible immediately
+        document.querySelector('.hero').classList.add('visible');
+    </script>
+
+</body>
+</html>
+
